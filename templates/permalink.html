@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>{{book.title}} - Book Details</title>
+</head>
+<body>
+	<a href="/">
+    <h1>Book Catalog</h1>
+  </a>
+	<table style="text-align:center; border: 1px solid black; border-collapse: collapse;" width="100%" cellpadding="4" cellspacing="0" border="0" align="center">
+		<tbody>
+			<tr>
+				<td>
+					<strong>
+						Title:
+					</strong>
+				</td>
+				<td>
+					{{book.title}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>
+						Authors:
+					</strong>
+				</td>
+				<td>
+					{{book.authors}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>
+						ISBN:
+					</strong>
+				</td>
+				<td>
+					{{book.isbn}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>
+						Number of pages:
+					</strong>
+				</td>
+				<td>
+					{% if book.pages=="" or book.pages=="0"%}
+					N/A
+					{% else %}
+					{{book.pages}}
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>
+						Publisher:
+					</strong>
+				</td>
+				<td>
+					{{book.publishers}}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>
+						Cover:
+					</strong>
+				</td>
+				<td>
+					{% if book.cover == "Not available" or book.cover == "" %}
+		            <img src="http://www.mybookadda.net/wp-content/uploads/2018/04/NotAvailable-600x918.jpg" border="0" height="260">
+		            {% else %}
+		            <img src="{{book.cover}}" border="0" height="260">
+		            {% endif %}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+  <a href="/{{book.key().id()}}/edit" class="new">
+    ➕
+  </a>
+</body>
+</html>

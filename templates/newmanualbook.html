@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Add Book</title>
+
+</head>
+<body>
+	<a href="/">
+    <h1>Book Catalog</h1>
+  </a>
+  <form method='POST' enctype='multipart/form-data' action='/new/manual'><h2>Add new book manually</h2>
+  	<table>
+  		<tbody>
+		  	<tr>
+		  		<td>Title</td><td><input name='title' type='text' placeholder='Title' value="{{title}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Authors</td><td><input name='authors' type='text' placeholder='Authors' value="{{authors}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>ISBN</td><td><input name='isbn' type='text' placeholder='ISBN' value="{{isbn}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Publisher</td><td><input name='publishers' type='text' placeholder='Publisher' value="{{publishers}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Pages</td><td><input name='pages' type='text' placeholder='Pages' value="{{pages}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Cover</td><td><input name='cover' type='text' placeholder='Cover' value="{{cover}}"></td>
+		  	</tr>
+  		</tbody>
+  	</table>
+  		
+  	<input type='submit' value='Add'>
+  </form>
+  <br>
+  {{error}}
+</body>
+</html>

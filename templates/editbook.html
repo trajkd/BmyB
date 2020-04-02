@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Add Book</title>
+
+</head>
+<body>
+	<a href="/">
+    <h1>Book Catalog</h1>
+  </a>
+  <form method='POST' enctype='multipart/form-data' action='/{{book.key().id()}}/edit'><h2>Edit book: {{book.title}}</h2>
+  	<table>
+  		<tbody>
+		  	<tr>
+		  		<td>Title</td><td><input name='title' type='text' placeholder='Title' value="{{book.title}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Authors</td><td><input name='authors' type='text' placeholder='Authors' value="{{book.authors}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>ISBN</td><td><input name='isbn' type='text' placeholder='ISBN' value="{{book.isbn}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Publisher</td><td><input name='publishers' type='text' placeholder='Publisher' value="{{book.publishers}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Pages</td><td><input name='pages' type='text' placeholder='Pages' value="{{book.pages}}"></td>
+		  	</tr>
+		  	<tr>
+		  		<td>Cover</td><td><input name='cover' type='text' placeholder='Cover' value="{{book.cover}}"></td>
+		  	</tr>
+  		</tbody>
+  	</table>
+  		
+  	<input type='submit' value='Edit'>
+  </form>
+</body>
+</html>
