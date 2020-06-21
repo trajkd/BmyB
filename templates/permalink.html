@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link type="text/css" rel="stylesheet" href="/static/main.css" />
-
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
   <title>{{book.title}} - Book Details</title>
 </head>
 <body>
 	<a href="/">
-    <h1>Book Catalog</h1>
+    <img class="logo" src="../static/img/bookstobook_logo.svg" border="0" height="80" width="60">
   </a>
 	<table style="text-align:center; border: 1px solid black; border-collapse: collapse;" width="100%" cellpadding="4" cellspacing="0" border="0" align="center">
 		<tbody>
@@ -79,11 +82,42 @@
 		            {% endif %}
 				</td>
 			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<button id="bookit" class="button">Book it</button>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	<br>
   <a href="/{{book.key().id()}}/edit" class="new">
     ➕
   </a>
+
+  <!-- Modal -->
+  <div class="bg-modal">
+	<div class="modal-contents">
+
+		<div class="close">+</div>
+			<div>
+				{% if book.cover == "Not available" or book.cover == "" %}
+		        <img src="http://www.mybookadda.net/wp-content/uploads/2018/04/NotAvailable-600x918.jpg" border="0" height="100">	            {% else %}
+			    <img src="{{book.cover}}" border="0" width="100" height="100">
+		        {% endif %}
+	    	</div>
+		<form action="">
+			<input class="submit" name="dates">
+			<script type="text/javascript">
+				$('input[name="dates"]').daterangepicker({
+					minDate: new Date()
+				});
+			</script>
+			<button id="submit" class="button">Submit</button>
+		</form>
+	</div>
+  </div>
+<script src="/static/js/modal.js"></script>
 </body>
 </html>

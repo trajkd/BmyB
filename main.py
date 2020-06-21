@@ -29,6 +29,10 @@ class User(db.Model):
     password = db.StringProperty(required=True)
     email = db.StringProperty()
 
+class Customer(db.Model):
+    id = db.StringProperty(required=True)
+    email = db.StringProperty(required=True)
+
 ISBN_URL = "http://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:"
 def get_info(isbn):
 	url = ISBN_URL + isbn
@@ -394,6 +398,56 @@ class LogoutHandler(Handler):
 		self.response.headers.add_header("Set-Cookie", "userid=; Path=/")
 		self.redirect("/")
 
+import stripe
+stripe.api_key = "sk_test_Zwfb59Bjpkde9suz9L8D3N3Y003fqZuzoD"
+
+def isNewCustomer(email):
+	customers = db.GqlQuery("SELECT * FROM Customer")
+	customers = list(customers)
+	for c in customers:
+		if email == c.email:
+			return False
+	return True 
+
+class CreateCustomerHandler(Handler):
+	def post(self):
+		data = json.loads(self.request.body)
+		paymentMethod = data['payment_method']
+		try:
+			if isNewCustomer(data['email']):
+				customer = stripe.Customer.create(
+					payment_method=paymentMethod,
+					email=data['email'],
+					invoice_settings={
+						'default_payment_method': paymentMethod
+					}
+				)
+				
+				newCustomer = Customer(id=customer.id, email=data['email'])
+				newCustomer.put()
+				subscription = stripe.Subscription.create(
+					customer=customer.id,
+					items=[
+					{
+						'plan': 'plan_H4pcEEclVl4I7E',
+					},
+					],
+					expand=['latest_invoice.payment_intent']
+				)
+				self.response.headers['Content-Type'] = 'application/json'
+				self.response.out.write(str(subscription))
+			else:
+				self.error(403)
+		except Exception as e:
+			print(str(e))
+			self.error(403)
+
+class SignupFormHandler(Handler):
+	def get(self):
+		self.render("signupform.html")
+	def post(self):
+		self.redirect("/create-customer")
+
 app = webapp2.WSGIApplication([
 	('/', MainPage),
 	('/(\d+)/detail', PermalinkHandler),
@@ -402,5 +456,8 @@ app = webapp2.WSGIApplication([
 	('/new', NewBookHandler),
 	('/new/manual', NewManualBookHandler),
 	('/login', LoginHandler),
+	('/signup', SignupHandler),
+	('/create-customer', CreateCustomerHandler),
+	('/signupform', SignupFormHandler),
     ('/logout', LogoutHandler)
 ], debug = True)

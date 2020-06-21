@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+  <link type="text/css" rel="stylesheet" href="/static/css/MyCardElement.css" />
+  <title>Signup</title>
+</head>
+<body>
+  <div class="bg-signupform">
+    <a href="/">
+      <img id="signup-logo" class="logo" src="../static/img/bookstobook_logo.svg" border="0" height="100" width="100">
+    </a>
+    <div class="signupform-contents">
+      <form method="post" action="/create-customer" id="subscription-form" class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputFirstName">Full name</label>
+            <input type="text" class="form-control" id="inputFirstName" placeholder="">
+            <small id="passwordHelpBlock" class="form-text text-muted">
+              First Name
+            </small>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputLastName"> . </label>
+            <input type="text" class="form-control" id="inputLastName" placeholder="">
+            <small id="passwordHelpBlock" class="form-text text-muted">
+              Last Name
+            </small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="">
+          <div class="invalid-feedback">
+            Please provide a valid address.
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="inputPostalCode">Postal code</label>
+            <input type="text" class="form-control" id="inputPostalCode">
+            <div class="invalid-feedback">
+              Please provide a valid postal code.
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+            <div class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputCanton">Canton</label>
+            <select id="inputCanton" class="form-control">
+              <option>Geneva</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+          <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid email address.
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputVerifyPassword">Verify Password</label>
+              <input type="password" class="form-control" id="inputVerifyPassword" placeholder="">
+            </div>
+          </div>
+          <div id="card-element" class="MyCardElement">
+            <!-- Elements will create input elements here -->
+          </div>
+
+          <!-- We'll put the error messages in this element -->
+          <div id="card-errors" role="alert"></div>
+          <br>
+        <button id="submit" type="button" class="button submit">
+              <div id="spinner" class="hidden"></div>
+              <span id="button-text">Subscribe</span>
+            </button>
+      </form>
+    </div>
+  </div>
+
+    <!-- Modal success -->
+  <div class="bg-modal" id="success">
+    <div class="modal-contents">
+
+      <img src="/static/img/checkmark.svg" border="0" height="40">
+      <p class="order-status">Subscribed!</p>
+      <button id="catalog" class="button">Go to Catalog</button>
+    </div>
+  </div>
+
+    <!-- Modal error -->
+  <div class="bg-modal" id="error">
+    <div class="modal-contents">
+
+      <div class="close">+</div>
+      <img src="/static/img/x.svg" border="0" height="40">
+      <p class="error-status">The card was declined.</p>
+    </div>
+  </div>
+  <script src="/static/js/stripe.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+body {
+    position: inline-block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+}
+
+table, td, th {
+    font-size: 20px;
+	border:1px solid black;
+    border-collapse: collapse
+	padding: 8px;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
+
+.tableheader {
+	background-color: #4CAF50;
+}
+
+.tableheader:hover {
+	background-color: #3a843d;
+}
+
+.new {
+    display: block;
+    color: #222;
+    font-size: 32px;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.button {
+  background-color: #019101;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#signup {
+    float: right;
+    margin: 15px;
+}
+
+h1 {
+    display: inline-block;
+}
+
+.logo {
+    float: right;
+}
+
+/* Modal */
+
+.bg-modal {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contents {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.submit {
+    margin: 15px auto;
+    display: block;
+    width: 50%;
+    padding: 8px;
+    border: 1px solid gray;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 42px;
+    color: #333;
+    transform: rotate(45deg);
+    cursor: pointer;
+    &:hover {
+        color: #666;
+    }
+}
+
+/* Signp Form */
+
+.bg-signupform {
+    background-image: url("/static/img/blurry-gaussian.jpg");
+    overflow : scroll;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#signup-logo {
+    margin: 10px;
+}
+
+.signupform-contents {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    position: relative;
+    border-radius: 4px;
+    border-width: 10px;
+    align-items: center;
+}
+
+label[for="inputLastName"] {
+    color: white;
+}
+
+.form-input {
+    display:flex;
+    flex-flow:row;
+}
+
+.form-textbox {
+    width: 48%;
+}
+
+.form-sub-label {
+    position: absolute;
+    top: 2px;
+}
+
+.submit {
+    display: flex;
+    width: 50%;
+    padding: 8px;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  margin: 5px;
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
