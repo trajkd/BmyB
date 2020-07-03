@@ -4,8 +4,8 @@ import webapp2
 import jinja2
 
 #from google.appengine.api import memcache
-from pymemcache.client.base import Client
-memcache = Client(('bookstobook.dvlw2w.cfg.usw2.cache.amazonaws.com', 11211))
+# from pymemcache.client.base import Client
+# memcache = Client(('bookstobook.dvlw2w.cfg.usw2.cache.amazonaws.com', 11211))
 #from google.appengine.ext import db
 import boto3
 
@@ -602,7 +602,7 @@ class SignupHandler(webapp2.RequestHandler):
                                 password = make_pw_hash(username, password)
                                 #u = User(username=username, password=password, email=email)
                                 #u.put()
-                                dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
+                                dynamodb = boto3.resource('dynamodb', region_name='us-west-2')
                                 table = dynamodb.Table('User')
                                 table.put_item(
                                     Item={
@@ -712,7 +712,7 @@ class CreateCustomerHandler(Handler):
                     }
                 )
                 dynamodb = boto3.resource('dynamodb', region_name='us-west-2')
-                table = dynamodb.Table('Book')
+                table = dynamodb.Table('Customer')
                 table.put_item(
                     Item={
                         'id': customer.id,
